@@ -37,6 +37,7 @@ augroup END
 
     if a:0 > 1 && a:2 !=# ''
       let l:pieces = s:AddGroundValues(l:pieces, 'gui', a:2)
+      let l:pieces = s:AddGroundValues(l:pieces, 'cterm', a:2)
     endif
 
     call s:Clear(a:group)
@@ -205,7 +206,7 @@ augroup END
 
 " Normal UI {{{
   " Normal text
-  call s:HL('Normal', s:fg, s:none)
+  call s:HL('Normal', s:fg, s:bg)
   if g:lumiere_dim_inactive_windows == 1
     call s:HL('NormalNC', s:fg, s:bgNC)
   endif
@@ -218,7 +219,7 @@ augroup END
   call s:HL('MatchParen', s:blue, s:bluehl, s:bold)
 
   " Concealed element: \lambda → λ
-  call s:HL('Conceal', s:gray1, s:bold)
+  call s:HL('Conceal', s:gray1, s:none, s:bold)
 
   " Line number of CursorLine
   call s:HL('CursorLineNr', s:gray5, s:none, s:bold)
